@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The After Initiative | Volunteer</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo-section">
+    <img src="logo.png" class="logo" alt="The After Initiative Logo">
+    <h1>The After Initiative</h1>
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="volunteers.html">Volunteer</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="page-banner">
+  <h2>Become A Volunteer</h2>
+</section>
+
+<img src="volunteer-team.webp" alt="Volunteer Team" class="volunteer-hero">
+
+<section class="volunteer-wrapper">
+
+  <div class="volunteer-box">
+
+    <div class="volunteer-info">
+      <h2>Become A Volunteer</h2>
+      <div class="small-line"></div>
+
+      <p>
+        Join our mission to empower women through sewing, soap making,
+        and community support. Your time, skills, and passion can create lasting impact.
+      </p>
+
+      <div class="volunteer-point">
+        <span>🤝</span>
+        <div>
+          <h3>Make a Difference</h3>
+          <p>Your contributions help us support, educate, and empower women in need.</p>
+        </div>
+      </div>
+
+      <div class="volunteer-point">
+        <span>🌱</span>
+        <div>
+          <h3>Grow With Us</h3>
+          <p>Gain experience, build connections, and develop new skills while giving back.</p>
+        </div>
+      </div>
+
+      <div class="volunteer-point">
+        <span>❤️</span>
+        <div>
+          <h3>Be Part of a Community</h3>
+          <p>Work alongside passionate people who share the same vision for change.</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="form volunteer-form" id="volunteerForm">
+      <h3>Volunteer Registration</h3>
+      <div class="small-line"></div>
+
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="number" placeholder="Age" required>
+
+      <input type="text" placeholder="Skills / Interests e.g. Teaching, Tailoring" required>
+      <input type="text" placeholder="Availability e.g. Weekends, Weekdays" required>
+
+      <textarea placeholder="Tell us why you want to volunteer with us..." required></textarea>
+
+      <button type="submit" class="btn">Submit Application</button>
+    </form>
+
+  </div>
+
+  <img src="community-support.jpeg" alt="Community Support" class="volunteer-bottom-image">
+
+</section>
+
+<footer>
+
+  <div class="footer-content">
+
+    <div class="footer-section">
+      <h3>The After Initiative</h3>
+
+      <p>
+        Empowering vulnerable women through sewing, soap making,
+        community support, and opportunities for independence.
+      </p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact</h4>
+
+      <p>
+        Phone:
+        <a href="tel:+2349167670102">
+          +234 916 767 0102
+        </a>
+      </p>
+
+      <p>Location: Abuja, Nigeria</p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <p class="copyright">
+    © 2026 The After Initiative. All Rights Reserved.
+  </p>
+
+</footer>
+<script>
+  const volunteerForm = document.getElementById("volunteerForm");
+
+  volunteerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const volunteerData = {
+      fullName: volunteerForm.querySelector('input[placeholder="Full Name"]').value,
+
+      email: volunteerForm.querySelector('input[placeholder="Email Address"]').value,
+
+      phone: volunteerForm.querySelector('input[placeholder="Phone Number"]').value,
+
+      age: volunteerForm.querySelector('input[placeholder="Age"]').value,
+
+      skills: volunteerForm.querySelector('input[placeholder="Skills / Interests e.g. Teaching, Tailoring"]').value,
+
+      availability: volunteerForm.querySelector('input[placeholder="Availability e.g. Weekends, Weekdays"]').value,
+
+      message: volunteerForm.querySelector("textarea").value,
+
+      date: new Date().toLocaleString()
+    };
+
+    let volunteers =
+      JSON.parse(localStorage.getItem("volunteers")) || [];
+
+    volunteers.push(volunteerData);
+
+    localStorage.setItem(
+      "volunteers",
+      JSON.stringify(volunteers)
+    );
+
+    alert("Volunteer application saved successfully!");
+
+    volunteerForm.reset();
+  });
+</script>
+
+</body>
+</html>
