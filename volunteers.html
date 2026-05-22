@@ -125,7 +125,23 @@
   </p>
 
 </footer>
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAdKfJ71m0M57CSsIwA_7twL_CUR_4zvW0",
+    authDomain: "the-after-initiative.firebaseapp.com",
+    databaseURL: "https://the-after-initiative-default-rtdb.firebaseio.com/",
+    projectId: "the-after-initiative",
+    storageBucket: "the-after-initiative.firebasestorage.app",
+    messagingSenderId: "968802110196",
+    appId: "1:968802110196:web:c0ccff2ce51b15fd52aca1"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
   const volunteerForm = document.getElementById("volunteerForm");
 
   volunteerForm.addEventListener("submit", function(event) {
@@ -149,17 +165,9 @@
       date: new Date().toLocaleString()
     };
 
-    let volunteers =
-      JSON.parse(localStorage.getItem("volunteers")) || [];
+    push(ref(database, "volunteers"), volunteerData);
 
-    volunteers.push(volunteerData);
-
-    localStorage.setItem(
-      "volunteers",
-      JSON.stringify(volunteers)
-    );
-
-    alert("Volunteer application saved successfully!");
+    alert("Volunteer application submitted successfully!");
 
     volunteerForm.reset();
   });
